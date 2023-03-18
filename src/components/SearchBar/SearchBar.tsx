@@ -3,22 +3,20 @@ import './SearchBar.css';
 
 class SearchBar extends React.Component {
   savedData: string;
-  data: string;
   constructor(props: Readonly<object>) {
     super(props);
     this.savedData = localStorage.getItem('search') || '';
-    this.data = '';
   }
   componentDidMount(): void {
     this.savedData = localStorage.getItem('search') || '';
   }
   inputChange(e: Event | undefined): void {
     if (e?.target instanceof HTMLInputElement) {
-      this.data = e.target.value;
+      this.savedData = e.target.value;
     }
   }
   componentWillUnmount(): void {
-    localStorage.setItem('search', this.data);
+    localStorage.setItem('search', this.savedData);
   }
   render() {
     return (

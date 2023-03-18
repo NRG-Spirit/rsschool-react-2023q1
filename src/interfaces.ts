@@ -1,27 +1,11 @@
 export interface ICard {
-  id: string;
+  id: number;
   title: string;
   year: string;
   sortingYear: number;
   denomination: string;
   region: string;
-  condition:
-    | 'PF'
-    | 'PL'
-    | 'BU'
-    | 'UNC'
-    | 'AU+'
-    | 'AU'
-    | 'XF+'
-    | 'XF'
-    | 'VF+'
-    | 'VF'
-    | 'F'
-    | 'VG'
-    | 'G'
-    | 'AG'
-    | 'FA'
-    | 'PR';
+  condition: string;
   material: string;
   weight: string;
   description: string;
