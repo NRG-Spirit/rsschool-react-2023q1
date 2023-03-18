@@ -1,0 +1,14 @@
+.not-found-page{
+  width: 100%;
+  flex-grow: 1;
+}
+
+.not-found-page__img {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.not-found-page__img img {
+  width: 50%;
+  aspect-ratio: 1;
+}

@@ -1,0 +1,10 @@
+.about-page {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.about-page_main{
+  width: 100%;
+  margin-top: 5rem;
+} 
