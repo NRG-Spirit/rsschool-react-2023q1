@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/SearchBar/SearchBar.tsx</title>
+    <title>Code coverage report for components/Header/Header.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/SearchBar</a> SearchBar.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Header</a> Header.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/36</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/36</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
@@ -93,29 +93,7 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -129,48 +107,52 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import './SearchBar.css';
+import { NavLink } from 'react-router-dom';
+import './Header.css';
 &nbsp;
-class SearchBar extends React.Component {
-  savedData: string;
-  constructor(props: Readonly&lt;object&gt;) {
+interface IProps {
+  title: string;
+}
+&nbsp;
+interface IHeader {
+  title: string;
+}
+&nbsp;
+class Header extends React.Component&lt;IProps, IHeader&gt; {
+  constructor(props: IProps) {
     super(props);
-    this.savedData = localStorage.getItem('search') || '';
-  }
-  componentDidMount(): void {
-    this.savedData = localStorage.getItem('search') || '';
-  }
-<span class="fstat-no" title="function not covered" >  inputChange(e: Event | undefined): void {</span>
-<span class="cstat-no" title="statement not covered" >    if (e?.target instanceof HTMLInputElement) {</span>
-<span class="cstat-no" title="statement not covered" >      this.savedData = e.target.value;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-  componentWillUnmount(): void {
-    localStorage.setItem('search', this.savedData);
+    this.state = { title: props.title };
   }
   render() {
     return (
-      &lt;div className="searchBar"&gt;
-        &lt;input
-          className="searchBar__input"
-          type="text"
-          name="searchBar"
-          id=""
-          defaultValue={this.savedData}
-          onChange={<span class="fstat-no" title="function not covered" >() =&gt; this.inputChange(event)}</span>
-        /&gt;
+      &lt;div className="header"&gt;
+        &lt;h1&gt;{this.state.title}&lt;/h1&gt;
+        &lt;nav className="header_nav"&gt;
+          &lt;NavLink to="/"&gt;Home&lt;/NavLink&gt;
+          &lt;NavLink to="/about"&gt;About us&lt;/NavLink&gt;
+        &lt;/nav&gt;
       &lt;/div&gt;
     );
   }
 }
-export default SearchBar;
+export default Header;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -178,16 +160,16 @@ export default SearchBar;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-19T10:52:52.743Z
+                at 2023-03-19T19:40:49.894Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

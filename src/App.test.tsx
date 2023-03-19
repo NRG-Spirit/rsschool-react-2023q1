@@ -17,6 +17,19 @@ describe('App', () => {
       })
     ).toBeInTheDocument();
   });
+  it('Landing to about us route', () => {
+    const route = '/about';
+    render(
+      <MemoryRouter initialEntries={[route]}>
+        <App />
+      </MemoryRouter>
+    );
+    expect(
+      screen.getByRole('heading', {
+        level: 1,
+      })
+    ).toHaveTextContent('About us');
+  });
   it('Landing to 404', () => {
     const badRoute = '/some/bad/route';
     render(
