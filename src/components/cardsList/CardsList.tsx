@@ -2,7 +2,7 @@ import React from 'react';
 import './CardsList.css';
 import { ICard } from '../../interfaces';
 import data from '../../data/db.json';
-import Card from '../../components/card/Card';
+import Card from '../../components/Card/Card';
 
 class CardsList extends React.Component {
   data: ICard[];
