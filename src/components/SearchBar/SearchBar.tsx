@@ -24,7 +24,7 @@ class SearchBar extends React.Component {
         <input
           className="searchBar__input"
           type="text"
-          name=""
+          name="searchBar"
           id=""
           defaultValue={this.savedData}
           onChange={() => this.inputChange(event)}

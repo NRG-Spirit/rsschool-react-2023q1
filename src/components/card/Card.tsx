@@ -20,7 +20,7 @@ class Card extends React.Component<IProps> {
           <img src={this.card.img.reverse} alt="coin" className="card__images_img" />
         </div>
         <div className="card__info">
-          <div className="card__title">{this.card.title}</div>
+          <h4 className="card__title">{this.card.title}</h4>
           <div className="card__year">{this.card.year}</div>
           <div className="card__denomination">Denomination: {this.card.denomination}</div>
           <div className="card__condition">Condition: {this.card.condition}</div>
