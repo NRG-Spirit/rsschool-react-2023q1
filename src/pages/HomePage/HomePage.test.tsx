@@ -20,7 +20,7 @@ describe('HomePage', () => {
       screen.getByRole('link', {
         name: 'Home',
       })
-    );
+    ).toBeInTheDocument();
   });
   it('Render searcBar', () => {
     render(
@@ -28,7 +28,7 @@ describe('HomePage', () => {
         <HomePage />
       </Router>
     );
-    expect(screen.getByRole('textbox'));
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
   it('Render CardsList', () => {
     render(
