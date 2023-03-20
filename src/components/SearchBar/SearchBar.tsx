@@ -7,9 +7,6 @@ class SearchBar extends React.Component {
     super(props);
     this.savedData = localStorage.getItem('search') || '';
   }
-  componentDidMount(): void {
-    this.savedData = localStorage.getItem('search') || '';
-  }
   inputChange(e: Event | undefined): void {
     if (e?.target instanceof HTMLInputElement) {
       this.savedData = e.target.value;
@@ -25,7 +22,6 @@ class SearchBar extends React.Component {
           className="searchBar__input"
           type="text"
           name="searchBar"
-          id=""
           defaultValue={this.savedData}
           onChange={() => this.inputChange(event)}
         />
