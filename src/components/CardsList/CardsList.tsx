@@ -1,14 +1,17 @@
 import React from 'react';
 import './CardsList.css';
 import { ICard } from '../../interfaces';
-import data from '../../data/db.json';
 import Card from '../../components/Card/Card';
 
-class CardsList extends React.Component {
+interface IProps {
+  cards: ICard[];
+}
+
+class CardsList extends React.Component<IProps> {
   data: ICard[];
-  constructor(props: Readonly<object>) {
+  constructor(props: IProps) {
     super(props);
-    this.data = data.cards;
+    this.data = props.cards;
   }
   render() {
     return (

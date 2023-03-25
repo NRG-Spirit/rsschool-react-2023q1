@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CardsList from '../../components/CardsList/CardsList';
+import data from '../../data/db.json';
 
 class HomePage extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class HomePage extends React.Component {
         <Header title={'Home'} />
         <div className="home-page_main">
           <SearchBar />
-          <CardsList />
+          <CardsList cards={data.cards} />
         </div>
       </div>
     );
