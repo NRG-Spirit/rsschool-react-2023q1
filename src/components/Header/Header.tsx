@@ -22,6 +22,7 @@ class Header extends React.Component<IProps, IHeader> {
         <nav className="header_nav">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/about">About us</NavLink>
+          <NavLink to="/form">Form</NavLink>
         </nav>
       </div>
     );
