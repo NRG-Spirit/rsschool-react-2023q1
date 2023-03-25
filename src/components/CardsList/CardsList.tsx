@@ -8,15 +8,14 @@ interface IProps {
 }
 
 class CardsList extends React.Component<IProps> {
-  data: ICard[];
   constructor(props: IProps) {
     super(props);
-    this.data = props.cards;
   }
   render() {
+    console.log(this.props.cards);
     return (
       <div className="cardsList">
-        {this.data.map((el, idx) => {
+        {this.props.cards.map((el, idx) => {
           return <Card key={idx} card={el} />;
         })}
       </div>

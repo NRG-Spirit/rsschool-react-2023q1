@@ -16,6 +16,12 @@ class Form extends React.Component<IProps> {
   weightInput: React.RefObject<HTMLInputElement>;
   descriptionInput: React.RefObject<HTMLInputElement>;
   priceInput: React.RefObject<HTMLInputElement>;
+  condition: string;
+  material: string;
+  img: {
+    obverse: React.RefObject<HTMLInputElement>;
+    reverse: React.RefObject<HTMLInputElement>;
+  };
   constructor(props: IProps) {
     super(props);
     this.form = React.createRef() as React.RefObject<HTMLFormElement>;
@@ -26,11 +32,51 @@ class Form extends React.Component<IProps> {
     this.weightInput = React.createRef();
     this.descriptionInput = React.createRef();
     this.priceInput = React.createRef();
+    this.condition = 'XF';
+    this.material = 'золото';
+    this.img = {
+      obverse: React.createRef(),
+      reverse: React.createRef(),
+    };
+  }
+
+  handleSubmit(e: React.SyntheticEvent) {
+    e.preventDefault();
+
+    if (
+      this.titleInput.current &&
+      this.yearInput.current &&
+      this.denominationInput.current &&
+      this.regionInput.current &&
+      this.weightInput.current &&
+      this.descriptionInput.current &&
+      this.priceInput.current &&
+      this.img.obverse.current?.files &&
+      this.img.reverse.current?.files
+    ) {
+      const card = {
+        id: this.props.id,
+        title: this.titleInput.current.value,
+        year: this.yearInput.current.value,
+        denomination: this.denominationInput.current.value,
+        region: this.regionInput.current.value,
+        condition: this.condition,
+        material: this.material,
+        weight: this.weightInput.current.value,
+        description: this.descriptionInput.current.value,
+        price: Number(this.priceInput.current.value),
+        img: {
+          obverse: URL.createObjectURL(this.img.obverse.current.files[0]),
+          reverse: URL.createObjectURL(this.img.reverse.current.files[0]),
+        },
+      };
+
+      this.props.addCard(card);
+    }
   }
   render() {
-    console.log(this.form.current?.checkValidity);
     return (
-      <form className="form" ref={this.form}>
+      <form className="form" ref={this.form} onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <label className="form__label">Title</label>
           <input
@@ -40,7 +86,6 @@ class Form extends React.Component<IProps> {
             ref={this.titleInput}
             required={true}
           />
-          <span>Invalid Input</span>
         </fieldset>
         <fieldset>
           <label className="form__label">Date of minting</label>
@@ -49,9 +94,8 @@ class Form extends React.Component<IProps> {
             type="text"
             placeholder="Input year or century"
             ref={this.yearInput}
-            required={false}
+            required={true}
           />
-          <span>Invalid Input</span>
         </fieldset>
         <fieldset>
           <label className="form__label">Denomination</label>
@@ -62,7 +106,6 @@ class Form extends React.Component<IProps> {
             ref={this.denominationInput}
             required={true}
           />
-          <span>Invalid Input</span>
         </fieldset>
         <fieldset>
           <label className="form__label">Region</label>
@@ -73,7 +116,6 @@ class Form extends React.Component<IProps> {
             ref={this.regionInput}
             required={true}
           />
-          <span>Invalid Input</span>
         </fieldset>
         <fieldset>
           <label className="form__label">Condition</label>
@@ -144,7 +186,6 @@ class Form extends React.Component<IProps> {
             ref={this.weightInput}
             required={true}
           />
-          <span>Invalid Input</span>
         </fieldset>
         <fieldset>
           <label className="form__label">Description</label>
@@ -155,7 +196,6 @@ class Form extends React.Component<IProps> {
             ref={this.descriptionInput}
             required={true}
           />
-          <span>Invalid Input</span>
         </fieldset>
         <fieldset>
           <label className="form__label">Price</label>
@@ -167,11 +207,33 @@ class Form extends React.Component<IProps> {
             placeholder="Input price"
             ref={this.priceInput}
           />
-          <span>Invalid Input</span>
+        </fieldset>
+        <fieldset>
+          <label className="form__label">Obverse image</label>
+          <input
+            className="form__input form__input_file"
+            type="file"
+            placeholder="Attach obverse image"
+            accept="image/*"
+            ref={this.img.obverse}
+          />
+        </fieldset>
+        <fieldset>
+          <label className="form__label">Reverse image</label>
+          <input
+            className="form__input form__input_file"
+            type="file"
+            placeholder="Attach reverse image"
+            accept="image/*"
+            ref={this.img.reverse}
+          />
         </fieldset>
         <fieldset>
           <label className="form__label">Confirm your age</label>
           <input type="date" className="form__input" placeholder="Input date" />
+        </fieldset>
+        <fieldset>
+          <input className="form__input form__input_submit" type="submit" value="Submit" />
         </fieldset>
       </form>
     );
