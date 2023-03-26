@@ -48,6 +48,7 @@ class Form extends React.Component<IProps> {
     reverse: false,
     age: false,
     policy: false,
+    toValidate: false,
   };
 
   textValidate(text: string) {
@@ -92,94 +93,93 @@ class Form extends React.Component<IProps> {
   }
 
   async handleValidate() {
-    await this.setState({ form: true });
+    let result = true;
     if (this.titleInput.current && this.textValidate(this.titleInput.current.value)) {
       await this.setState({ title: true });
-      console.log('da', this.state.title);
     } else {
       await this.setState({ title: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.yearInput.current && this.textValidate(this.yearInput.current.value)) {
       await this.setState({ year: true });
     } else {
       await this.setState({ year: false });
-      this.setState({ form: false });
+      result = false;
     }
     if (this.denominationInput.current && this.textValidate(this.denominationInput.current.value)) {
       await this.setState({ denomination: true });
     } else {
       await this.setState({ denomination: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.regionInput.current && this.textValidate(this.regionInput.current.value)) {
       await this.setState({ region: true });
     } else {
       await this.setState({ region: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.radioValidate()) {
       await this.setState({ material: true });
     } else {
       await this.setState({ material: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.selectValidate()) {
       await this.setState({ condition: true });
     } else {
       await this.setState({ condition: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.weightInput.current && this.textValidate(this.weightInput.current.value)) {
       this.setState({ weight: true });
     } else {
       await this.setState({ weight: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.descriptionInput.current && this.textValidate(this.descriptionInput.current.value)) {
       await this.setState({ description: true });
     } else {
       await this.setState({ description: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.priceInput.current && this.numberValidate(Number(this.priceInput.current.value))) {
       await this.setState({ price: true });
     } else {
       await this.setState({ price: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.obverse.current?.files && this.obverse.current?.files.length > 0) {
-      console.log(this.obverse.current?.files);
       await this.setState({ obverse: true });
     } else {
       await this.setState({ obverse: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.reverse.current?.files && this.reverse.current?.files.length > 0) {
       await this.setState({ reverse: true });
     } else {
       await this.setState({ reverse: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.dateValidate()) {
       await this.setState({ age: true });
     } else {
       await this.setState({ age: false });
-      await this.setState({ form: false });
+      result = false;
     }
     if (this.checkboxValidate()) {
       await this.setState({ policy: true });
     } else {
       await this.setState({ policy: false });
-      await this.setState({ form: false });
+      result = false;
     }
-
-    console.log(this.state);
+    this.setState({ form: result });
     return this.state.form;
   }
 
   async handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
+
+    this.setState({ toValidate: true });
 
     const isValidated = await this.handleValidate();
     if (isValidated) {
@@ -217,37 +217,96 @@ class Form extends React.Component<IProps> {
         this.props.addCard(card);
         const target = e.target as HTMLFormElement;
         target.reset();
+        this.setState({ toValidate: false });
+        alert('Card added');
       }
     }
+  }
+
+  handleReset() {
+    this.setState({ toValidate: false });
   }
 
   render() {
     this.materialInput.current = [];
     return (
-      <form className="form" ref={this.form} onSubmit={this.handleSubmit.bind(this)}>
+      <form
+        className="form"
+        ref={this.form}
+        onSubmit={this.handleSubmit.bind(this)}
+        onReset={this.handleReset.bind(this)}
+      >
         <div className="flexContainer">
-          <TextInput label="title" reference={this.titleInput} />
-          <TextInput label="date of minting" reference={this.yearInput} />
+          <TextInput
+            label="title"
+            reference={this.titleInput}
+            correct={!this.state.title && this.state.toValidate}
+          />
+          <TextInput
+            label="date of minting"
+            reference={this.yearInput}
+            correct={!this.state.year && this.state.toValidate}
+          />
         </div>
 
         <div className="flexContainer">
-          <TextInput label="denomination" reference={this.denominationInput} />
-          <TextInput label="region" reference={this.regionInput} />
+          <TextInput
+            label="denomination"
+            reference={this.denominationInput}
+            correct={!this.state.denomination && this.state.toValidate}
+          />
+          <TextInput
+            label="region"
+            reference={this.regionInput}
+            correct={!this.state.region && this.state.toValidate}
+          />
         </div>
 
         <div className="flexContainer">
-          <RadioInput label="material" reference={this.materialInput} />
+          <RadioInput
+            label="material"
+            reference={this.materialInput}
+            correct={!this.state.material && this.state.toValidate}
+          />
           <div>
             <SelectInput label="condition" reference={this.conditionInput} />
-            <TextInput label="weight" reference={this.weightInput} />
-            <TextInput label="description" reference={this.descriptionInput} />
-            <NumberInput label="price" reference={this.priceInput} />
+            <TextInput
+              label="weight"
+              reference={this.weightInput}
+              correct={!this.state.weight && this.state.toValidate}
+            />
+            <TextInput
+              label="description"
+              reference={this.descriptionInput}
+              correct={!this.state.description && this.state.toValidate}
+            />
+            <NumberInput
+              label="price"
+              reference={this.priceInput}
+              correct={!this.state.price && this.state.toValidate}
+            />
           </div>
         </div>
-        <FileInput label="obverse image" reference={this.obverse} />
-        <FileInput label="reverse image" reference={this.reverse} />
-        <DateInput label="confirm your age" reference={this.dateInput} />
-        <CheckboxInput label="i agree to privacy policy" reference={this.policyInput} />
+        <FileInput
+          label="obverse image"
+          reference={this.obverse}
+          correct={!this.state.obverse && this.state.toValidate}
+        />
+        <FileInput
+          label="reverse image"
+          reference={this.reverse}
+          correct={!this.state.reverse && this.state.toValidate}
+        />
+        <DateInput
+          label="confirm your age (18 years)"
+          reference={this.dateInput}
+          correct={!this.state.age && this.state.toValidate}
+        />
+        <CheckboxInput
+          label="i agree to privacy policy"
+          reference={this.policyInput}
+          correct={!this.state.policy && this.state.toValidate}
+        />
         <div className="flexContainer">
           <fieldset>
             <input className="form__input form__input_reset" type="reset" value="Reset" />
