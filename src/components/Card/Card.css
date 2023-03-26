@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'OldEnglish';
+  src: local('oldenglishtextmt'), url(./fonts/oldenglishtextmt.ttf) format('truetype');
+} 
+
+.card {
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px dotted rgba(0, 0, 0, 0.2);
+  border-radius: 1.5rem;
+}
+
+.card__images {
+  width: 100%;
+}
+
+.card__images_img {
+  width: 50%;
+}
+
+.card__title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.card__year {
+  text-align: center;
+  font-family: 'OldEnglish';
+}
+
+.card__denomination,
+.card__condition {
+  text-align: left;
+}
+
+.card__price {
+  font-family: 'OldEnglish';
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+}
