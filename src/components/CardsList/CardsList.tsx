@@ -12,7 +12,6 @@ class CardsList extends React.Component<IProps> {
     super(props);
   }
   render() {
-    console.log(this.props.cards);
     return (
       <div className="cardsList">
         {this.props.cards.map((el, idx) => {
