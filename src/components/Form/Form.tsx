@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import './Form.css';
 import { ICard } from '../../interfaces';
+import TextInput from './Inputs/TextInput';
+import SelectInput from './Inputs/SelectInput';
+import NumberInput from './Inputs/NumberInput';
+import RadioInput from './Inputs/RadioInput';
+import FileInput from './Inputs/FileInput';
+import DateInput from './Inputs/DateInput';
+import CheckboxInput from './Inputs/CheckboxInput';
 
 interface IProps {
   addCard: (card: ICard) => void;
@@ -17,7 +24,9 @@ class Form extends React.Component<IProps> {
   descriptionInput: React.RefObject<HTMLInputElement>;
   priceInput: React.RefObject<HTMLInputElement>;
   conditionInput: React.RefObject<HTMLSelectElement>;
-  material: string;
+  materialInput: MutableRefObject<HTMLInputElement[] | null>;
+  dateInput: React.RefObject<HTMLInputElement>;
+  policyInput: React.RefObject<HTMLInputElement>;
   img: {
     obverse: React.RefObject<HTMLInputElement>;
     reverse: React.RefObject<HTMLInputElement>;
@@ -33,7 +42,9 @@ class Form extends React.Component<IProps> {
     this.descriptionInput = React.createRef();
     this.priceInput = React.createRef();
     this.conditionInput = React.createRef();
-    this.material = 'золото';
+    this.materialInput = React.createRef();
+    this.dateInput = React.createRef();
+    this.policyInput = React.createRef();
     this.img = {
       obverse: React.createRef(),
       reverse: React.createRef(),
@@ -55,6 +66,7 @@ class Form extends React.Component<IProps> {
       this.img.obverse.current?.files &&
       this.img.reverse.current?.files
     ) {
+      const radio = this.materialInput.current?.filter((el) => el.checked === true)[0].defaultValue;
       const card = {
         id: this.props.id,
         title: this.titleInput.current.value,
@@ -62,7 +74,7 @@ class Form extends React.Component<IProps> {
         denomination: this.denominationInput.current.value,
         region: this.regionInput.current.value,
         condition: this.conditionInput.current.value,
-        material: this.material,
+        material: radio ? radio : '',
         weight: this.weightInput.current.value,
         description: this.descriptionInput.current.value,
         price: Number(this.priceInput.current.value),
@@ -77,199 +89,32 @@ class Form extends React.Component<IProps> {
   }
 
   render() {
+    this.materialInput.current = [];
     return (
       <form className="form" ref={this.form} onSubmit={this.handleSubmit.bind(this)}>
         <div className="flexContainer">
-          <fieldset>
-            <label className="form__label form__label-block">Title</label>
-            <input
-              className="form__input form__input_title"
-              type="text"
-              placeholder="Input title"
-              ref={this.titleInput}
-            />
-          </fieldset>
-          <fieldset>
-            <label className="form__label form__label-block">Date of minting</label>
-            <input
-              className="form__input form__input_year"
-              type="text"
-              placeholder="Input year or century"
-              ref={this.yearInput}
-            />
-          </fieldset>
+          <TextInput label="title" reference={this.titleInput} />
+          <TextInput label="date of minting" reference={this.yearInput} />
         </div>
 
         <div className="flexContainer">
-          <fieldset>
-            <label className="form__label form__label-block">Denomination</label>
-            <input
-              className="form__input form__input_denomination"
-              type="text"
-              placeholder="Input denomination"
-              ref={this.denominationInput}
-            />
-          </fieldset>
-          <fieldset>
-            <label className="form__label form__label-block">Region</label>
-            <input
-              className="form__input form__input_region"
-              type="text"
-              placeholder="Input region"
-              ref={this.regionInput}
-            />
-          </fieldset>
+          <TextInput label="denomination" reference={this.denominationInput} />
+          <TextInput label="region" reference={this.regionInput} />
         </div>
 
         <div className="flexContainer">
-          <fieldset className="flexItem">
-            <label className="form__label form__label-block">Material</label>
-            <div className="fieldset_type_radio">
-              <div className="form__input_radio">
-                <input
-                  type="radio"
-                  className="form__input"
-                  value="платина"
-                  name="material"
-                  defaultChecked
-                />
-                <label className="form__label">Платина</label>
-              </div>
-              <div className="form__input_radio">
-                <input
-                  type="radio"
-                  className="form__input form__input_radio"
-                  value="золото"
-                  name="material"
-                />
-                <label className="form__label">Золото</label>
-              </div>
-              <div className="form__input_radio">
-                <input
-                  type="radio"
-                  className="form__input form__input_radio"
-                  value="серебро"
-                  name="material"
-                />
-                <label className="form__label">Серебро</label>
-              </div>
-              <div className="form__input_radio">
-                <input
-                  type="radio"
-                  className="form__input form__input_radio"
-                  value="мельхиор"
-                  name="material"
-                />
-                <label className="form__label">Мельхиор</label>
-              </div>
-              <div className="form__input_radio">
-                <input
-                  type="radio"
-                  className="form__input form__input_radio"
-                  value="нейзельбер"
-                  name="material"
-                />
-                <label className="form__label">Нейзельбер</label>
-              </div>
-              <div className="form__input_radio">
-                <input
-                  type="radio"
-                  className="form__input form__input_radio"
-                  value="алюминий"
-                  name="material"
-                />
-                <label className="form__label">Алюминий</label>
-              </div>
-              <div className="form__input_radio">
-                <input
-                  type="radio"
-                  className="form__input form__input_radio"
-                  value="медь"
-                  name="material"
-                />
-                <label className="form__label">Медь</label>
-              </div>
-            </div>
-          </fieldset>
+          <RadioInput label="material" reference={this.materialInput} />
           <div>
-            <fieldset className="fieldset__type_select">
-              <label className="form__label form__label_condition">Condition</label>
-              <select className="form__input" name="location" ref={this.conditionInput}>
-                <option value="PF">PF</option>
-                <option value="PL">PL</option>
-                <option value="BU">BU</option>
-                <option value="UNC">UNC</option>
-                <option value="AU+">AU+</option>
-                <option value="AU">AU</option>
-                <option value="XF+">XF+</option>
-                <option value="XF">XF</option>
-                <option value="VF+">VF+</option>
-                <option value="VF">VF</option>
-                <option value="F">F</option>
-                <option value="VG">VG</option>
-                <option value="G">G</option>
-                <option value="AG">AG</option>
-                <option value="FA">FA</option>
-                <option value="PR">PR</option>
-              </select>
-            </fieldset>
-            <fieldset>
-              <label className="form__label form__label-block">Weight</label>
-              <input
-                className="form__input form__input_weight"
-                type="text"
-                placeholder="Input weight"
-                ref={this.weightInput}
-              />
-            </fieldset>
-            <fieldset>
-              <label className="form__label form__label-block">Description</label>
-              <input
-                className="form__input form__input_title"
-                type="text"
-                placeholder="Input description"
-                ref={this.descriptionInput}
-              />
-            </fieldset>
-            <fieldset className="fieldset__price">
-              <label className="form__label form__label_price">Price</label>
-              <input
-                className="form__input"
-                type="number"
-                min="0"
-                max="1000000"
-                placeholder="Input price"
-                ref={this.priceInput}
-              />
-            </fieldset>
+            <SelectInput label="condition" reference={this.conditionInput} />
+            <TextInput label="weight" reference={this.weightInput} />
+            <TextInput label="description" reference={this.descriptionInput} />
+            <NumberInput label="price" reference={this.priceInput} />
           </div>
         </div>
-        <fieldset>
-          <label className="form__label">Obverse image</label>
-          <input
-            className="form__input form__input_file"
-            type="file"
-            accept="image/*"
-            ref={this.img.obverse}
-          />
-        </fieldset>
-        <fieldset>
-          <label className="form__label">Reverse image</label>
-          <input
-            className="form__input form__input_file"
-            type="file"
-            accept="image/*"
-            ref={this.img.reverse}
-          />
-        </fieldset>
-        <fieldset>
-          <label className="form__label">Confirm your age</label>
-          <input type="date" className="form__input form__input_date" placeholder="Input date" />
-        </fieldset>
-        <fieldset>
-          <input type="checkbox" className="form__input form__input_checkbox" />
-          <label className="form__label">I Agree to Privacy Policy</label>
-        </fieldset>
+        <FileInput label="obverse image" reference={this.img.obverse} />
+        <FileInput label="reverse image" reference={this.img.reverse} />
+        <DateInput label="confirm your age" reference={this.dateInput} />
+        <CheckboxInput label="i agree to privacy policy" reference={this.policyInput} />
         <div className="flexContainer">
           <fieldset>
             <input className="form__input form__input_reset" type="reset" value="Reset" />

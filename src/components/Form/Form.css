@@ -16,14 +16,15 @@ fieldset {
   border: none;
 }
 
-.fieldset_type_radio,
-.fieldset__type_select,
-.fieldset__price {
+.fieldset_radio,
+.fieldset__select,
+.fieldset__number {
   text-align: left;
 }
 
 .form__label {
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 .form__label-block {
@@ -31,16 +32,12 @@ fieldset {
   text-align: start;
 }
 
-.form__label_condition,
-.form__label_price {
+.form__label_select,
+.form__label_number {
   margin: 0 0.5rem 0 0;
 }
 
-.form__input_title,
-.form__input_year,
-.form__input_denomination,
-.form__input_region,
-.form__input_weight {
+.form__input_text {
   width: 100%;
 }
 
