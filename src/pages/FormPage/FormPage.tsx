@@ -13,7 +13,6 @@ class FormPage extends React.Component {
     const newState = this.state;
     newState.activeCards = newState.activeCards.concat(card);
     this.setState(newState);
-    console.log(this.state);
   }
   render() {
     return (

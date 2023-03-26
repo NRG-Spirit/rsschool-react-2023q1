@@ -172,13 +172,12 @@ class Form extends React.Component<IProps> {
       await this.setState({ policy: false });
       result = false;
     }
-    this.setState({ form: result });
+    await this.setState({ form: result });
     return this.state.form;
   }
 
   async handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-
     this.setState({ toValidate: true });
 
     const isValidated = await this.handleValidate();
@@ -213,11 +212,10 @@ class Form extends React.Component<IProps> {
             reverse: URL.createObjectURL(this.reverse.current.files[0]),
           },
         };
-
         this.props.addCard(card);
         const target = e.target as HTMLFormElement;
         target.reset();
-        this.setState({ toValidate: false });
+        await this.setState({ toValidate: false });
         alert('Card added');
       }
     }
