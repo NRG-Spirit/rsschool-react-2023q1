@@ -6,9 +6,6 @@ interface IProps {
   name: string;
   reference: UseFormRegister<FieldValues>;
   error?: string;
-  validate: {
-    positive: (value: string) => boolean | string;
-  };
 }
 
 export default function NumberInput(props: IProps) {
@@ -24,7 +21,7 @@ export default function NumberInput(props: IProps) {
         placeholder={`Input ${props.label}`}
         {...props.reference(props.name, {
           required: `input ${props.label}`,
-          validate: props.validate,
+          validate: (value: string) => parseInt(value) > 0,
         })}
       />
       {props.error && <div style={{ color: 'red' }}>{props.error}</div>}

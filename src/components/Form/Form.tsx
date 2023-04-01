@@ -107,7 +107,6 @@ export default function Form(props: IProps) {
             reference={register}
             name={'price'}
             error={errors?.price?.message?.toString()}
-            validate={{ positive: (value: string) => parseInt(value) > 0 }}
           />
         </div>
       </div>
