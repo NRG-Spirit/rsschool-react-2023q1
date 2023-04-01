@@ -102,7 +102,13 @@ export default function Form(props: IProps) {
             name={'description'}
             error={errors?.description?.message?.toString()}
           />
-          {/* <NumberInput label="price" /> */}
+          <NumberInput
+            label="price"
+            reference={register}
+            name={'price'}
+            error={errors?.price?.message?.toString()}
+            validate={{ positive: (value: string) => parseInt(value) > 0 }}
+          />
         </div>
       </div>
       {/*
