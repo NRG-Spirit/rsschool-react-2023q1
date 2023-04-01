@@ -1,27 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import './FormPage.css';
 import CardsList from '../../components/CardsList/CardsList';
 import Form from '../../components/Form/Form';
 import { ICard } from '../../interfaces';
 
-class FormPage extends React.Component {
-  state = {
-    activeCards: [] as ICard[],
-  };
-  addCard(card: ICard) {
-    const newState = this.state;
-    newState.activeCards = newState.activeCards.concat(card);
-    this.setState(newState);
+export default function FormPage() {
+  const [activeCards, setActiveCard] = useState<ICard[]>([]);
+
+  function addCard(card: ICard) {
+    let newActiveCards = activeCards || [];
+    newActiveCards = newActiveCards.concat(card);
+    setActiveCard(newActiveCards);
   }
-  render() {
-    return (
-      <div className="form-page">
-        <Header title={'Form'} />
-        <Form addCard={this.addCard.bind(this)} id={this.state.activeCards.length + 1} />
-        <CardsList cards={this.state.activeCards} />
-      </div>
-    );
-  }
+  return (
+    <div className="form-page">
+      <Header title={'Form'} />
+      <Form addCard={addCard} id={activeCards.length + 1} />
+      <CardsList cards={activeCards} />
+    </div>
+  );
 }
-export default FormPage;
