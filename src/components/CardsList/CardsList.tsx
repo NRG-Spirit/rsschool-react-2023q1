@@ -7,18 +7,12 @@ interface IProps {
   cards: ICard[];
 }
 
-class CardsList extends React.Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
-  }
-  render() {
-    return (
-      <div className="cardsList">
-        {this.props.cards.map((el, idx) => {
-          return <Card key={idx} card={el} />;
-        })}
-      </div>
-    );
-  }
+export default function CardsList(props: IProps) {
+  return (
+    <div className="cardsList">
+      {props.cards.map((el, idx) => {
+        return <Card key={idx} card={el} />;
+      })}
+    </div>
+  );
 }
-export default CardsList;
