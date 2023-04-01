@@ -124,8 +124,14 @@ export default function Form(props: IProps) {
         name={'reverse'}
         error={errors?.reverse?.message?.toString()}
       />
+
+      <DateInput
+        label="confirm your age (18 years)"
+        reference={register}
+        name={'age'}
+        error={errors?.age?.message?.toString()}
+      />
       {/*
-      <DateInput label="confirm your age (18 years)" />
       <CheckboxInput label="i agree to privacy policy" /> */}
       <div className="flexContainer">
         <fieldset>

@@ -1,30 +1,28 @@
 import React from 'react';
+import { UseFormRegister, FieldValues } from 'react-hook-form';
 
 interface IProps {
   label: string;
-  reference: React.RefObject<HTMLInputElement>;
-  correct: boolean;
+  name: string;
+  reference: UseFormRegister<FieldValues>;
+  error?: string;
 }
 
-class DateInput extends React.Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
-  }
-  render() {
-    return (
-      <fieldset>
-        <label className="form__label">
-          {this.props.label}
-          {this.props.correct && <span style={{ color: 'red' }}>incorrect</span>}
-        </label>
-        <input
-          type="date"
-          className="form__input form__input_date"
-          placeholder={`Input ${this.props.label}`}
-          ref={this.props.reference}
-        />
-      </fieldset>
-    );
-  }
+export default function DateInput(props: IProps) {
+  return (
+    <fieldset>
+      <label className="form__label">{props.label}</label>
+      <input
+        type="date"
+        className="form__input form__input_date"
+        placeholder={`Input ${props.label}`}
+        {...props.reference(props.name, {
+          required: `${props.label}`,
+          validate: (value) =>
+            (+new Date() - +new Date(value)) / 31536000000 > 18 || 'not valid age',
+        })}
+      />
+      {props.error && <span style={{ color: 'red' }}>{props.error}</span>}
+    </fieldset>
+  );
 }
-export default DateInput;
