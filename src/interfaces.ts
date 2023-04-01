@@ -26,8 +26,8 @@ export interface IFormData {
   weight?: string;
   description?: string;
   price?: number;
-  obverse?: string;
-  reverse?: string;
+  obverse?: FileList;
+  reverse?: FileList;
   age?: string;
   policy?: boolean;
 }

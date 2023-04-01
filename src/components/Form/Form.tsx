@@ -36,8 +36,8 @@ export default function Form(props: IProps) {
       description: data.description || '',
       price: data.price || 0,
       img: {
-        obverse: data.obverse || '',
-        reverse: data.reverse || '',
+        obverse: data.obverse ? URL.createObjectURL(data.obverse[0]) : '',
+        reverse: data.reverse ? URL.createObjectURL(data.reverse[0]) : '',
       },
     };
     props.addCard(card);
@@ -111,9 +111,20 @@ export default function Form(props: IProps) {
           />
         </div>
       </div>
+
+      <FileInput
+        label="obverse image"
+        reference={register}
+        name={'obverse'}
+        error={errors?.obverse?.message?.toString()}
+      />
+      <FileInput
+        label="reverse image"
+        reference={register}
+        name={'reverse'}
+        error={errors?.reverse?.message?.toString()}
+      />
       {/*
-      <FileInput label="obverse image" />
-      <FileInput label="reverse image" />
       <DateInput label="confirm your age (18 years)" />
       <CheckboxInput label="i agree to privacy policy" /> */}
       <div className="flexContainer">
