@@ -27,7 +27,7 @@ export default function NumberInput(props: IProps) {
           validate: props.validate,
         })}
       />
-      {props.error && <span style={{ color: 'red' }}>{props.error}</span>}
+      {props.error && <div style={{ color: 'red' }}>{props.error}</div>}
     </fieldset>
   );
 }

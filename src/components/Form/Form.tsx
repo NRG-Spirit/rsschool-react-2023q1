@@ -131,8 +131,13 @@ export default function Form(props: IProps) {
         name={'age'}
         error={errors?.age?.message?.toString()}
       />
-      {/*
-      <CheckboxInput label="i agree to privacy policy" /> */}
+
+      <CheckboxInput
+        label="i agree to privacy policy"
+        reference={register}
+        name={'policy'}
+        error={errors?.policy?.message?.toString()}
+      />
       <div className="flexContainer">
         <fieldset>
           <input className="form__input form__input_reset" type="reset" />
