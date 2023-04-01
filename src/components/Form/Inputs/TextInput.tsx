@@ -18,10 +18,10 @@ export default function TextInput(props: IProps) {
         placeholder={`Input ${props.label}`}
         autoComplete="off"
         {...props.reference(props.name, {
-          required: true,
+          required: `input ${props.label}`,
           minLength: {
             value: 3,
-            message: 'Title is too short, minimum three letters',
+            message: 'too short, minimum 3 letters',
           },
         })}
       />

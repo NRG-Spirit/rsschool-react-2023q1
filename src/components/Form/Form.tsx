@@ -57,7 +57,7 @@ export default function Form(props: IProps) {
           label="date of minting"
           reference={register}
           name={'year'}
-          error={errors?.title?.message?.toString()}
+          error={errors?.year?.message?.toString()}
         />
       </div>
 
@@ -66,25 +66,46 @@ export default function Form(props: IProps) {
           label="denomination"
           reference={register}
           name={'denomination'}
-          error={errors?.title?.message?.toString()}
+          error={errors?.denomination?.message?.toString()}
         />
         <TextInput
           label="region"
           reference={register}
           name={'region'}
-          error={errors?.title?.message?.toString()}
+          error={errors?.region?.message?.toString()}
         />
       </div>
-      {/*
+
       <div className="flexContainer">
-        <RadioInput label="material" />
+        <RadioInput
+          label="material"
+          reference={register}
+          name="material"
+          error={errors?.material?.message?.toString()}
+        />
         <div>
-          <SelectInput label="condition" />
-          <TextInput label="weight" />
-          <TextInput label="description" />
-          <NumberInput label="price" />
+          <SelectInput
+            label="condition"
+            reference={register}
+            name="condition"
+            error={errors?.condition?.message?.toString()}
+          />
+          <TextInput
+            label="weight"
+            reference={register}
+            name={'weight'}
+            error={errors?.weight?.message?.toString()}
+          />
+          <TextInput
+            label="description"
+            reference={register}
+            name={'description'}
+            error={errors?.description?.message?.toString()}
+          />
+          {/* <NumberInput label="price" /> */}
         </div>
       </div>
+      {/*
       <FileInput label="obverse image" />
       <FileInput label="reverse image" />
       <DateInput label="confirm your age (18 years)" />
