@@ -45,7 +45,7 @@ export default function Form(props: IProps) {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)} data-testid="form">
       <div className="flexContainer">
         <TextInput
           label="title"

@@ -28,6 +28,8 @@ describe('FormPage', () => {
         <FormPage />
       </Router>
     );
+    expect(screen.getByTestId('form-date')).toBeInTheDocument();
+    expect(screen.getByTestId('form-number')).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'PF' })).toBeInTheDocument;
     const inputCheckbox = screen.getByRole<HTMLInputElement>('checkbox');
     expect(inputCheckbox).toBeInTheDocument();
@@ -41,5 +43,11 @@ describe('FormPage', () => {
     expect(inputRadio[0]).not.toBeChecked();
     fireEvent.click(inputRadio[0]);
     expect(inputRadio[0]).toBeChecked();
+    const buttons = screen.getAllByRole('button');
+    expect(buttons[0]).toBeInTheDocument();
+    expect(buttons).toHaveLength(2);
+    const textInputs = screen.getAllByRole('textbox');
+    expect(textInputs).toHaveLength(6);
+    expect(screen.getByTestId('form')).toBeInTheDocument();
   });
 });

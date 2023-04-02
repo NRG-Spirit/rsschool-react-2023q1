@@ -16,6 +16,7 @@ export default function NumberInput(props: IProps) {
       <input
         className="form__input"
         type="number"
+        data-testid="form-number"
         min="0"
         max="1000000"
         placeholder={`Input ${props.label}`}

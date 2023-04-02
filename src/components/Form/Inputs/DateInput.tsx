@@ -15,7 +15,7 @@ export default function DateInput(props: IProps) {
       <input
         type="date"
         className="form__input form__input_date"
-        placeholder={`Input ${props.label}`}
+        data-testid="form-date"
         {...props.reference(props.name, {
           required: `${props.label}`,
           validate: (value) =>
