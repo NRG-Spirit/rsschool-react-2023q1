@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import React from 'react';
 import FormPage from './FormPage';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Form from '../../components/Form/Form';
 
 describe('FormPage', () => {
   it('Render header', () => {
@@ -23,11 +24,7 @@ describe('FormPage', () => {
     ).toBeInTheDocument();
   });
   it('Render form', () => {
-    render(
-      <Router>
-        <FormPage />
-      </Router>
-    );
+    render(<Form id={41} addCard={(e) => e} />);
     expect(screen.getByTestId('form-date')).toBeInTheDocument();
     expect(screen.getByTestId('form-number')).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'PF' })).toBeInTheDocument;
