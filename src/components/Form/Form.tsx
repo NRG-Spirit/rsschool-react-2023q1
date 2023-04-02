@@ -41,6 +41,7 @@ export default function Form(props: IProps) {
       },
     };
     props.addCard(card);
+    alert('Cards added');
     reset();
   };
 
