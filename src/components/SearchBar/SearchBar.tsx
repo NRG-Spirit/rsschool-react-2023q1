@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import './SearchBar.css';
 
-export default function SearchBar() {
+interface IProps {
+  handleSearch: (search: string) => Promise<void>;
+}
+
+export default function SearchBar(props: IProps) {
   const [searchData, setSearchData] = React.useState('');
 
   useEffect(() => {

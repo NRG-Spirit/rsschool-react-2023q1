@@ -31,3 +31,72 @@ export interface IFormData {
   age?: string;
   policy?: boolean;
 }
+
+export interface IBook {
+  accessInfo?: {
+    accessviewstatus?: string;
+    country?: string;
+    embeddable?: boolean;
+    epub?: {
+      isAvailable?: boolean;
+    };
+    pdf?: {
+      isAvailable?: boolean;
+    };
+    publicDomain?: boolean;
+    quoteSharingAllowed?: boolean;
+    textToSpeechPermission?: string;
+    viewability?: string;
+    webReaderLink?: string;
+  };
+  etag?: string;
+  id: string;
+  kind?: string;
+  saleinfo?: {
+    country?: string;
+    isEbook?: boolean;
+    saleability?: string;
+  };
+  searchinfo?: {
+    textSnippet?: string;
+  };
+  selflink?: string;
+  volumeInfo: {
+    allowanonlogging?: boolean;
+    authors: string[];
+    canonicalvolumelink?: string;
+    categories: string[];
+    contentversion?: string;
+    imagelinks: {
+      smallThumbnail: string;
+      thumbnail: string;
+    };
+    industryidentifiers?: IIndustryidentifiers[];
+  };
+  infolink?: string;
+  language: string;
+  maturityRating: string;
+  panelizationSummary?: {
+    containsepubbubbles?: boolean;
+    containsImageBubbles?: boolean;
+  };
+  previewlink?: string;
+  printtype?: string;
+  publishedDate: string;
+  readingModes?: {
+    image?: string;
+    text?: string;
+  };
+  title: string;
+}
+
+interface IIndustryidentifiers {
+  type?: string;
+  identifier?: string;
+}
+
+export interface IBooksResponce {
+  kind: string;
+  items: IBook[];
+  totalItems: number;
+}
