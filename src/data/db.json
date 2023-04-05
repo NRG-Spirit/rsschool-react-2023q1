@@ -96,7 +96,7 @@
         "reverse": "./img/cards/0012.png"
       }
     },
-    
+
     {
       "id": 16,
       "title": "Лира",
@@ -229,7 +229,7 @@
       "id": 28,
       "title": "Доллар",
       "year": "2022",
-       "denomination": "1",
+      "denomination": "1",
       "region": "США",
       "condition": "BU",
       "material": "серебро",
@@ -357,7 +357,7 @@
       "id": 37,
       "title": "Фунт",
       "year": "2021",
-       "denomination": "1",
+      "denomination": "1",
       "region": "Гибралтар",
       "condition": "UNC",
       "material": "серебро",
@@ -389,7 +389,7 @@
       "id": 39,
       "title": "Фунт",
       "year": "2021",
-       "denomination": "2",
+      "denomination": "2",
       "region": "Гибралтар",
       "condition": "AU+",
       "material": "серебро",
@@ -432,6 +432,6 @@
         "obverse": "./img/cards/0081.png",
         "reverse": "./img/cards/0082.png"
       }
-    }    
+    }
   ]
 }

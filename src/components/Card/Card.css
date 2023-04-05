@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'OldEnglish';
   src: local('oldenglishtextmt'), url(./fonts/oldenglishtextmt.ttf) format('truetype');
-} 
+}
 
 .card {
   padding: 1rem;
