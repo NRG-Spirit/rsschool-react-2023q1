@@ -1,24 +1,22 @@
 import React from 'react';
 import './Card.css';
-import { ICard } from '../../interfaces';
+import { IBook } from '../../interfaces';
 
 interface IProps {
-  card: ICard;
+  card: IBook;
 }
 
 export default function Card(props: IProps) {
+  const imgLink = props.card.volumeInfo?.imageLinks?.thumbnail || './img/cover.png';
+  const author = props.card.volumeInfo?.authors?.[0] || '';
   return (
     <div className="card">
-      <div className="card__images">
-        <img src={props.card.img.obverse} alt="coin" className="card__images_img" />
-        <img src={props.card.img.reverse} alt="coin" className="card__images_img" />
+      <div className="card__image">
+        <img src={imgLink} alt="coin" className="card__image_img" />
       </div>
       <div className="card__info">
-        <h4 className="card__title">{props.card.title}</h4>
-        <div className="card__year">{props.card.year}</div>
-        <div className="card__denomination">Denomination: {props.card.denomination}</div>
-        <div className="card__condition">Condition: {props.card.condition}</div>
-        <div className="card__price">{props.card.price} $</div>
+        <h4 className="card__title">{props.card.volumeInfo.title}</h4>
+        <div className="card__author">{author}</div>
       </div>
     </div>
   );

@@ -13,33 +13,23 @@
   border-radius: 1.5rem;
 }
 
-.card__images {
+.card__image {
   width: 100%;
+  aspect-ratio: 0.8;
 }
 
-.card__images_img {
-  width: 50%;
+.card__image_img {
+  width: 100%;
+  height: 100%;
 }
 
 .card__title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 0.7rem;
 }
 
-.card__year {
+.card__author {
   text-align: center;
   font-family: 'OldEnglish';
 }
 
-.card__denomination,
-.card__condition {
-  text-align: left;
-}
-
-.card__price {
-  font-family: 'OldEnglish';
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  font-size: 2rem;
-}

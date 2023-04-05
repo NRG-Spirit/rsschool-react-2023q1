@@ -67,27 +67,28 @@ export interface IBook {
     canonicalvolumelink?: string;
     categories: string[];
     contentversion?: string;
-    imagelinks: {
-      smallThumbnail: string;
-      thumbnail: string;
+    imageLinks: {
+      smallThumbnail: string | undefined;
+      thumbnail: string | undefined;
     };
     industryidentifiers?: IIndustryidentifiers[];
+
+    infolink?: string;
+    language?: string;
+    maturityRating: string;
+    panelizationSummary?: {
+      containsepubbubbles?: boolean;
+      containsImageBubbles?: boolean;
+    };
+    previewlink?: string;
+    printtype?: string;
+    publishedDate: string;
+    readingModes?: {
+      image?: string;
+      text?: string;
+    };
+    title: string[];
   };
-  infolink?: string;
-  language: string;
-  maturityRating: string;
-  panelizationSummary?: {
-    containsepubbubbles?: boolean;
-    containsImageBubbles?: boolean;
-  };
-  previewlink?: string;
-  printtype?: string;
-  publishedDate: string;
-  readingModes?: {
-    image?: string;
-    text?: string;
-  };
-  title: string;
 }
 
 interface IIndustryidentifiers {

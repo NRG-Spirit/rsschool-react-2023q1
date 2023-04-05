@@ -3,16 +3,19 @@ import Header from '../../components/Header/Header';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CardsList from '../../components/CardsList/CardsList';
-import data from '../../data/db.json';
 import { searchBooks } from '../../http/api';
 import { IBook } from '../../interfaces';
 
 export default function HomePage() {
   const [foundedBooks, setFoundenBooks] = useState<IBook[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSearchBooks(search: string) {
-    const dat = await searchBooks(search);
-    if (dat.items) setFoundenBooks(dat.items);
+    setIsLoading(true);
+    const response = await searchBooks(search);
+    if (response.items) setFoundenBooks(response.items);
+    setIsLoading(false);
+    console.log(foundedBooks, response);
   }
 
   return (
@@ -20,7 +23,7 @@ export default function HomePage() {
       <Header title={'Home'} />
       <div className="home-page_main">
         <SearchBar handleSearch={handleSearchBooks} />
-        <CardsList cards={data.cards} />
+        <CardsList cards={foundedBooks} />
       </div>
     </div>
   );

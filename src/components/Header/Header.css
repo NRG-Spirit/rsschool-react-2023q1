@@ -5,7 +5,6 @@
 
 
 h1 {
-  font-family: OldEnglish;
   margin: 0;
   padding: 0;
 }
@@ -18,6 +17,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: OldEnglish;
 }
 
 .header_nav {

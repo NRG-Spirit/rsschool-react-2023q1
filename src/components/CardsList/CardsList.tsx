@@ -1,10 +1,10 @@
 import React from 'react';
 import './CardsList.css';
-import { ICard } from '../../interfaces';
+import { IBook } from '../../interfaces';
 import Card from '../../components/Card/Card';
 
 interface IProps {
-  cards: ICard[];
+  cards: IBook[];
 }
 
 export default function CardsList(props: IProps) {
