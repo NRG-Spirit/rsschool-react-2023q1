@@ -1,8 +1,7 @@
 @font-face {
   font-family: 'OldEnglish';
   src: local('oldenglishtextmt'), url(./fonts/oldenglishtextmt.ttf) format('truetype');
-} 
-
+}
 
 h1 {
   margin: 0;

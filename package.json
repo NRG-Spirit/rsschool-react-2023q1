@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "npx eslint .",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx && prettier --check .",
     "test": "vitest --coverage"
   },
   "dependencies": {

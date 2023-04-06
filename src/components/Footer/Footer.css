@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'OldEnglish';
   src: local('oldenglishtextmt'), url(./fonts/oldenglishtextmt.ttf) format('truetype');
-} 
+}
 
 .footer {
   padding: 1rem;
@@ -36,4 +36,3 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-
