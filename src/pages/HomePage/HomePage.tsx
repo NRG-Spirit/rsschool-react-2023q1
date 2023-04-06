@@ -5,6 +5,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import CardsList from '../../components/CardsList/CardsList';
 import { searchBooks } from '../../http/api';
 import { IBook } from '../../interfaces';
+import Loader from '../../components/Loader/Loader';
 
 export default function HomePage() {
   const [foundedBooks, setFoundenBooks] = useState<IBook[]>([]);
@@ -23,7 +24,7 @@ export default function HomePage() {
       <Header title={'Home'} />
       <div className="home-page_main">
         <SearchBar handleSearch={handleSearchBooks} />
-        <CardsList cards={foundedBooks} />
+        {isLoading ? <Loader /> : <CardsList cards={foundedBooks} />}
       </div>
     </div>
   );
