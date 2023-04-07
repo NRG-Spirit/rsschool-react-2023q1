@@ -15,25 +15,16 @@ export default function TextInput(props: IProps) {
       <select
         className="form__input"
         {...props.reference(props.name, {
-          required: 'choose condition',
+          required: 'choose language',
         })}
       >
-        <option value="PF">PF</option>
-        <option value="PL">PL</option>
-        <option value="BU">BU</option>
-        <option value="UNC">UNC</option>
-        <option value="AU+">AU+</option>
-        <option value="AU">AU</option>
-        <option value="XF+">XF+</option>
-        <option value="XF">XF</option>
-        <option value="VF+">VF+</option>
-        <option value="VF">VF</option>
-        <option value="F">F</option>
-        <option value="VG">VG</option>
-        <option value="G">G</option>
-        <option value="AG">AG</option>
-        <option value="FA">FA</option>
-        <option value="PR">PR</option>
+        <option value="PF">EN</option>
+        <option value="PL">UA</option>
+        <option value="BU">RU</option>
+        <option value="BU">SPA</option>
+        <option value="BU">ITA</option>
+        <option value="BU">GER</option>
+        <option value="BU">JPN</option>
       </select>
       {props.error && <span style={{ color: 'red' }}>{props.error}</span>}
     </fieldset>

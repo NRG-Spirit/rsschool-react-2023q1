@@ -1,34 +1,15 @@
-export interface ICard {
-  id: number;
-  title: string;
-  year: string;
-  denomination: string;
-  region: string;
-  condition: string;
-  material: string;
-  weight: string;
-  description: string;
-  price: number;
-  img: {
-    obverse: string;
-    reverse: string;
-  };
-}
-
 export interface IFormData {
   id?: number;
   title?: string;
-  year?: string;
-  denomination?: string;
-  region?: string;
-  condition?: string;
-  material?: string;
-  weight?: string;
+  author?: string;
+  category?: string;
+  smallThumbnail?: FileList;
+  thumbnail?: FileList;
+  publishedDate?: string;
+  kind?: string;
   description?: string;
-  price?: number;
-  obverse?: FileList;
-  reverse?: FileList;
-  age?: string;
+  language?: string;
+  pageCount?: number;
   policy?: boolean;
 }
 
@@ -64,30 +45,44 @@ export interface IBook {
   volumeInfo: {
     allowanonlogging?: boolean;
     authors: string[];
+    averageRating?: number;
     canonicalvolumelink?: string;
-    categories: string[];
+    categories?: string[];
     contentversion?: string;
+    description?: string;
+    dimensions?: {
+      height?: string;
+      width?: string;
+      thickness?: string;
+    };
     imageLinks: {
       smallThumbnail: string | undefined;
       thumbnail: string | undefined;
+      small?: string;
+      medium?: string;
+      large?: string;
+      extraLarge?: string;
     };
     industryidentifiers?: IIndustryidentifiers[];
 
     infolink?: string;
     language?: string;
-    maturityRating: string;
+    mainCategory?: string;
+    maturityRating?: string;
+    pageCount: number;
     panelizationSummary?: {
       containsepubbubbles?: boolean;
       containsImageBubbles?: boolean;
     };
     previewlink?: string;
     printtype?: string;
+    publisher?: string;
     publishedDate: string;
     readingModes?: {
       image?: string;
       text?: string;
     };
-    title: string[];
+    title: string;
   };
 }
 

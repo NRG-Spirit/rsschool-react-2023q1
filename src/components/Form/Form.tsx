@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import './Form.css';
-import { ICard, IFormData } from '../../interfaces';
+import { IFormData, IBook } from '../../interfaces';
 import TextInput from './Inputs/TextInput';
 import SelectInput from './Inputs/SelectInput';
 import NumberInput from './Inputs/NumberInput';
@@ -11,7 +11,7 @@ import CheckboxInput from './Inputs/CheckboxInput';
 import React from 'react';
 
 interface IProps {
-  addCard: (card: ICard) => void;
+  addCard: (card: IBook) => void;
   id: number;
 }
 
@@ -24,21 +24,22 @@ export default function Form(props: IProps) {
   } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
 
   const onSubmit = async (data: IFormData) => {
-    const card: ICard = {
-      id: props.id,
-      title: data.title || '',
-      year: data.year || '',
-      denomination: data.denomination || '',
-      region: data.region || '',
-      condition: data.condition || '',
-      material: data.material || '',
-      weight: data.weight || '',
-      description: data.description || '',
-      price: data.price || 0,
-      img: {
-        obverse: data.obverse ? URL.createObjectURL(data.obverse[0]) : '',
-        reverse: data.reverse ? URL.createObjectURL(data.reverse[0]) : '',
+    const card: IBook = {
+      id: props.id.toString(),
+      volumeInfo: {
+        title: data.title || '',
+        authors: data.author ? [data.author] : [''],
+        description: data.description || '',
+        language: data.language || '',
+        mainCategory: data.category ? data.category : '',
+        imageLinks: {
+          smallThumbnail: data.smallThumbnail ? URL.createObjectURL(data.smallThumbnail[0]) : '',
+          thumbnail: data.thumbnail ? URL.createObjectURL(data.thumbnail[0]) : '',
+        },
+        publishedDate: data.publishedDate?.toString() || '',
+        pageCount: data.pageCount || 0,
       },
+      kind: data.kind || '',
     };
     props.addCard(card);
     alert('Cards added');
@@ -55,81 +56,69 @@ export default function Form(props: IProps) {
           error={errors?.title?.message?.toString()}
         />
         <TextInput
-          label="date of minting"
+          label="author"
           reference={register}
-          name={'year'}
-          error={errors?.year?.message?.toString()}
+          name={'author'}
+          error={errors?.author?.message?.toString()}
         />
       </div>
 
       <div className="flexContainer">
         <TextInput
-          label="denomination"
+          label="category"
           reference={register}
-          name={'denomination'}
-          error={errors?.denomination?.message?.toString()}
+          name={'category'}
+          error={errors?.category?.message?.toString()}
         />
         <TextInput
-          label="region"
+          label="description"
           reference={register}
-          name={'region'}
-          error={errors?.region?.message?.toString()}
+          name={'description'}
+          error={errors?.description?.message?.toString()}
         />
       </div>
 
       <div className="flexContainer">
         <RadioInput
-          label="material"
+          label="kind"
           reference={register}
-          name="material"
-          error={errors?.material?.message?.toString()}
+          name="kind"
+          error={errors?.kind?.message?.toString()}
         />
         <div>
           <SelectInput
-            label="condition"
+            label="language"
             reference={register}
-            name="condition"
-            error={errors?.condition?.message?.toString()}
-          />
-          <TextInput
-            label="weight"
-            reference={register}
-            name={'weight'}
-            error={errors?.weight?.message?.toString()}
-          />
-          <TextInput
-            label="description"
-            reference={register}
-            name={'description'}
-            error={errors?.description?.message?.toString()}
+            name="language"
+            error={errors?.language?.message?.toString()}
           />
           <NumberInput
-            label="price"
+            label="Count of pages"
             reference={register}
-            name={'price'}
-            error={errors?.price?.message?.toString()}
+            name={'pageCount'}
+            error={errors?.pageCount?.message?.toString()}
           />
         </div>
       </div>
 
       <FileInput
-        label="obverse image"
+        label="small thumbnail image"
         reference={register}
-        name={'obverse'}
-        error={errors?.obverse?.message?.toString()}
+        name={'smallThumbnail'}
+        error={errors?.smallThumbnail?.message?.toString()}
       />
       <FileInput
-        label="reverse image"
+        label="thumbnail image"
         reference={register}
-        name={'reverse'}
-        error={errors?.reverse?.message?.toString()}
+        name={'thumbnail'}
+        error={errors?.thumbnail?.message?.toString()}
       />
 
       <DateInput
-        label="confirm your age (18 years)"
+        label="date of publishing"
         reference={register}
-        name={'age'}
-        error={errors?.age?.message?.toString()}
+        name={'publishedDate'}
+        error={errors?.publishedDate?.message?.toString()}
       />
 
       <CheckboxInput

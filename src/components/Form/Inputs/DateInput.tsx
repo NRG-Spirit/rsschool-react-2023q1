@@ -18,8 +18,7 @@ export default function DateInput(props: IProps) {
         data-testid="form-date"
         {...props.reference(props.name, {
           required: `${props.label}`,
-          validate: (value) =>
-            (+new Date() - +new Date(value)) / 31536000000 > 18 || 'not valid age',
+          validate: (value) => +new Date() - +new Date(value) > 0 || 'not valid age',
         })}
       />
       {props.error && <span style={{ color: 'red' }}>{props.error}</span>}

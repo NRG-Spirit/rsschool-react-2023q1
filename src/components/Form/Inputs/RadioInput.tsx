@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export default function RadioInput(props: IProps) {
-  const material = ['платина', 'золото', 'серебро', 'мельхиор', 'нейзельбер', 'алюминий', 'медь'];
+  const material = ['book', 'magazine', 'newspaper'];
   return (
     <fieldset className="flexItem">
       <label className="form__label form__label-block">{props.label} </label>
