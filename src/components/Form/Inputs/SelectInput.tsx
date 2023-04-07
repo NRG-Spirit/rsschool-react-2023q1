@@ -18,13 +18,13 @@ export default function TextInput(props: IProps) {
           required: 'choose language',
         })}
       >
-        <option value="PF">EN</option>
-        <option value="PL">UA</option>
-        <option value="BU">RU</option>
-        <option value="BU">SPA</option>
-        <option value="BU">ITA</option>
-        <option value="BU">GER</option>
-        <option value="BU">JPN</option>
+        <option value="EN">EN</option>
+        <option value="UA">UA</option>
+        <option value="RU">RU</option>
+        <option value="SPA">SPA</option>
+        <option value="ITA">ITA</option>
+        <option value="GER">GER</option>
+        <option value="JPN">JPN</option>
       </select>
       {props.error && <span style={{ color: 'red' }}>{props.error}</span>}
     </fieldset>

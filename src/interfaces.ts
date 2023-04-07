@@ -37,6 +37,10 @@ export interface IBook {
     country?: string;
     isEbook?: boolean;
     saleability?: string;
+    listPrice: {
+      amount: number;
+      currencyCode: string;
+    };
   };
   searchinfo?: {
     textSnippet?: string;
@@ -91,7 +95,7 @@ interface IIndustryidentifiers {
   identifier?: string;
 }
 
-export interface IBooksResponce {
+export interface IBooksResponse {
   kind: string;
   items: IBook[];
   totalItems: number;
