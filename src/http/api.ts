@@ -1,4 +1,5 @@
 import { IBooksResponse, IBook } from '../interfaces';
+import fetch from 'node-fetch';
 
 const $host: string | undefined = import.meta.env.VITE_API_URL;
 const $key: string | undefined = import.meta.env.VITE_API_KEY;
