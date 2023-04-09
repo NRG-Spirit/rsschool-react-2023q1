@@ -21,7 +21,7 @@ export default function Card(props: IProps) {
       </div>
       <div className="card__info">
         <h4 className="card__title">{props.card.volumeInfo.title}</h4>
-        <div className="card__author">{author}</div>
+        <h5 className="card__author">{author}</h5>
       </div>
     </div>
   );

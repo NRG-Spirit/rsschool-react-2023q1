@@ -31,11 +31,12 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
+      {isModal && <div className="home-page__modal_background"></div>}
       <Header title={'Home'} />
       <div className="home-page_main">
         <SearchBar handleSearch={handleSearchBooks} />
         {isLoading ? <Loader /> : <CardsList cards={foundedBooks} handleModal={handleModal} />}
-        {isModal && <Modal id={isModal} handleModal={handleModal}/>}
+        {isModal && <Modal id={isModal} handleModal={handleModal} />}
       </div>
     </div>
   );
