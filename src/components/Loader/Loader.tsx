@@ -3,7 +3,7 @@ import './Loader.css';
 
 export default function Loader() {
   return (
-    <div className="loader">
+    <div className="loader" data-testid="loader-test">
       <div className="lds-roller">
         <div></div>
         <div></div>

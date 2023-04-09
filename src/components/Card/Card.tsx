@@ -17,7 +17,7 @@ export default function Card(props: IProps) {
   return (
     <div className="card" onClick={handleModal}>
       <div className="card__image">
-        <img src={imgLink} alt="coin" className="card__image_img" />
+        <img src={imgLink} alt="cover" className="card__image_img" />
       </div>
       <div className="card__info">
         <h4 className="card__title">{props.card.volumeInfo.title}</h4>

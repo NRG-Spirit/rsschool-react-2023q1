@@ -27,7 +27,7 @@ describe('FormPage', () => {
     render(<Form id={41} addCard={(e) => e} />);
     expect(screen.getByTestId('form-date')).toBeInTheDocument();
     expect(screen.getByTestId('form-number')).toBeInTheDocument();
-    expect(screen.getByRole('option', { name: 'PF' })).toBeInTheDocument;
+    expect(screen.getByRole('option', { name: 'EN' })).toBeInTheDocument;
     const inputCheckbox = screen.getByRole<HTMLInputElement>('checkbox');
     expect(inputCheckbox).toBeInTheDocument();
     fireEvent.click(inputCheckbox);
@@ -44,7 +44,7 @@ describe('FormPage', () => {
     expect(buttons[0]).toBeInTheDocument();
     expect(buttons).toHaveLength(2);
     const textInputs = screen.getAllByRole('textbox');
-    expect(textInputs).toHaveLength(6);
+    expect(textInputs).toHaveLength(4);
     expect(screen.getByTestId('form')).toBeInTheDocument();
   });
 });

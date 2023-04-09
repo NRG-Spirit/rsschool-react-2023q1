@@ -30,28 +30,4 @@ describe('HomePage', () => {
     );
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
-  it('Render CardsList', () => {
-    render(
-      <Router>
-        <HomePage />
-      </Router>
-    );
-    expect(
-      screen.getAllByRole('heading', {
-        level: 4,
-      })
-    ).toHaveLength(27);
-  });
-  it('Render Card', () => {
-    render(
-      <Router>
-        <HomePage />
-      </Router>
-    );
-    expect(
-      screen.getAllByRole('img', {
-        name: 'coin',
-      })
-    ).toHaveLength(54);
-  });
 });

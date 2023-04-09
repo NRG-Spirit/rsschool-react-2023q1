@@ -29,7 +29,6 @@ export default function Modal(props: IProps) {
         const response = await getBook(props.id);
         setBook(response);
         setIsLoading(false);
-        console.log(book);
       }
     };
     try {
