@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'OldEnglish';
+  src: local('oldenglishtextmt'), url(./fonts/oldenglishtextmt.ttf) format('truetype');
+}
+
+.footer {
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  height: 100px;
+  border-top: 3px dotted black;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: pap;
+  box-sizing: border-box;
+}
+
+.footer__rs-link {
+  width: 120px;
+  height: 50px;
+  background-image: url('./public/img/rss-logo.svg');
+  background-repeat: no-repeat;
+}
+
+.footer__year {
+  font-family: 'OldEnglish';
+  font-size: 1.5rem;
+}
+
+.footer__author {
+  width: 60px;
+  height: 60px;
+  background-image: url('./img/git-logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

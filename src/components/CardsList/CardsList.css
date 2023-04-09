@@ -1,0 +1,9 @@
+.cardsList {
+  margin: 1rem 0 0;
+  padding: 0 1rem;
+  display: grid;
+  grid-template: 1fr / repeat(3, calc(32%));
+  grid-auto-flow: row;
+  gap: 1rem;
+  justify-content: space-between;
+}
