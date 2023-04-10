@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -13,11 +13,20 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isModal, setIsModal] = useState('');
 
+  useEffect(() => {
+    if (localStorage.getItem('search')) {
+      const books = JSON.parse(localStorage.getItem('books') as string);
+      setFoundenBooks(books);
+    }
+  }, []);
+
   async function handleSearchBooks(search: string) {
     try {
       setIsLoading(true);
       const response = await searchBooks(search);
       if (response.items) setFoundenBooks(response.items);
+      localStorage.setItem('books', JSON.stringify(response.items));
+      localStorage.setItem('search', search);
       setIsLoading(false);
     } catch (e) {
       if (e instanceof Error) alert(e.message);

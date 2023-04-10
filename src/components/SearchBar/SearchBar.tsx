@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SearchBar.css';
 
 interface IProps {
@@ -7,6 +7,14 @@ interface IProps {
 
 export default function SearchBar(props: IProps) {
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (localStorage.getItem('search')) {
+      const search = localStorage.getItem('search') as string;
+      setValue(search);
+    }
+  }, []);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
   }
@@ -21,6 +29,7 @@ export default function SearchBar(props: IProps) {
         name="searchBar"
         onChange={handleChange}
         onKeyUp={startSearch}
+        defaultValue={value}
       />
     </div>
   );

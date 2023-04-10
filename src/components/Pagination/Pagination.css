@@ -1,0 +1,13 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination__prew,
+.pagination__next {
+  height: 2rem;
+  width: 7rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+  text-align: center;
+}
