@@ -25,29 +25,38 @@ export default function HomePage() {
       setPage(pageSave);
       const pagesSave = Number(localStorage.getItem('pagesSave')) || 0;
       setPages(pagesSave);
-      handleSearchBooks(searchSave);
+      handleSearchBooks();
     }
   }, []);
 
-  async function handleSearchBooks(search: string) {
+  async function handleSearchBooks() {
     try {
-      setIsLoading(true);
-      const response = await searchBooks(search, 14, page);
-      if (response.items) setFoundenBooks(response.items);
-      setPages(response.totalItems / 14);
-      localStorage.setItem('search', search);
-      localStorage.setItem('pageSave', page.toString());
-      localStorage.setItem('pagesSave', pages.toString());
-      setIsLoading(false);
+      if (search) {
+        setIsLoading(true);
+        const response = await searchBooks(search, 14, page);
+        if (response.items) setFoundenBooks(response.items);
+        setPages(response.totalItems / 14);
+        localStorage.setItem('search', search);
+        localStorage.setItem('pageSave', page.toString());
+        localStorage.setItem('pagesSave', pages.toString());
+        setIsLoading(false);
+      } else {
+        setFoundenBooks([]);
+        setPage(1);
+        setPages(0);
+      }
     } catch (e) {
       if (e instanceof Error) alert(e.message);
       setIsLoading(false);
     }
   }
 
+  useEffect(() => {
+    handleSearchBooks();
+  }, [page, search]);
+
   function handlePage(page: number) {
     setPage(page);
-    handleSearchBooks(search);
   }
 
   function handleSearch(value: string) {
