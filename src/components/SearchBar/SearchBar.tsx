@@ -3,6 +3,7 @@ import './SearchBar.css';
 
 interface IProps {
   handleSearch: (search: string) => Promise<void>;
+  handlePage: (page: number) => void;
 }
 
 export default function SearchBar(props: IProps) {
@@ -19,7 +20,10 @@ export default function SearchBar(props: IProps) {
     setValue(e.target.value);
   }
   function startSearch(e: React.KeyboardEvent) {
-    if (e.key === 'Enter') props.handleSearch(value);
+    if (e.key === 'Enter') {
+      props.handlePage(1);
+      props.handleSearch(value);
+    }
   }
   return (
     <div className="searchBar">
