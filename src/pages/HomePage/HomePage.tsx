@@ -19,13 +19,12 @@ export default function HomePage() {
 
   useEffect(() => {
     if (localStorage.getItem('search')) {
-      const searchSave = localStorage.getItem('search') || '';
+      const searchSave = localStorage.getItem('search') || 'q';
       setSearch(searchSave);
       const pageSave = Number(localStorage.getItem('pageSave')) || 1;
       setPage(pageSave);
       const pagesSave = Number(localStorage.getItem('pagesSave')) || 0;
       setPages(pagesSave);
-      console.log('search', search);
       handleSearchBooks(searchSave);
     }
   }, []);
@@ -53,6 +52,7 @@ export default function HomePage() {
 
   function handleSearch(value: string) {
     setSearch(value);
+    handlePage(1);
   }
 
   function handleModal(id: string): void {
@@ -64,7 +64,7 @@ export default function HomePage() {
       {isModal && <div className="home-page__modal_background"></div>}
       <Header title={'Home'} />
       <div className="home-page_main">
-        <SearchBar handleSearch={handleSearch} handlePage={handlePage} />
+        <SearchBar handleSearch={handleSearch} defaultValue={search} />
         {isLoading ? (
           <Loader />
         ) : (
