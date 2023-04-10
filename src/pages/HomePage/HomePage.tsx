@@ -19,9 +19,9 @@ export default function HomePage() {
 
   useEffect(() => {
     if (localStorage.getItem('search')) {
-      const booksSave = JSON.parse(localStorage.getItem('books') as string);
-      const pageSave = Number(localStorage.getItem('pageSave'));
-      const pagesSave = Number(localStorage.getItem('pagesSave'));
+      const booksSave = JSON.parse(localStorage.getItem('books') as string) || [];
+      const pageSave = Number(localStorage.getItem('pageSave')) || 1;
+      const pagesSave = Number(localStorage.getItem('pagesSave')) || 0;
       const searchSave = localStorage.getItem('search') || '';
       setFoundenBooks(booksSave);
       setPage(pageSave);
