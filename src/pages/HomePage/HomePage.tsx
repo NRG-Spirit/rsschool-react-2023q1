@@ -70,7 +70,14 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
-      {isModal && <div className="home-page__modal_background"></div>}
+      {isModal && (
+        <div
+          className="home-page__modal_background"
+          onClick={() => {
+            setIsModal('');
+          }}
+        ></div>
+      )}
       <Header title={'Home'} />
       <div className="home-page_main">
         <SearchBar handleSearch={handleSearch} defaultValue={search} />
