@@ -19,14 +19,14 @@ export default function HomePage() {
 
   useEffect(() => {
     if (localStorage.getItem('search')) {
-      const booksSave = JSON.parse(localStorage.getItem('books') as string) || [];
-      const pageSave = Number(localStorage.getItem('pageSave')) || 1;
-      const pagesSave = Number(localStorage.getItem('pagesSave')) || 0;
       const searchSave = localStorage.getItem('search') || '';
-      setFoundenBooks(booksSave);
-      setPage(pageSave);
-      setPages(pagesSave);
       setSearch(searchSave);
+      const pageSave = Number(localStorage.getItem('pageSave')) || 1;
+      setPage(pageSave);
+      const pagesSave = Number(localStorage.getItem('pagesSave')) || 0;
+      setPages(pagesSave);
+      console.log('search', search);
+      handleSearchBooks(searchSave);
     }
   }, []);
 
@@ -37,7 +37,6 @@ export default function HomePage() {
       const response = await searchBooks(search, 14, page);
       if (response.items) setFoundenBooks(response.items);
       setPages(response.totalItems / 14);
-      localStorage.setItem('booksSave', JSON.stringify(response.items));
       localStorage.setItem('search', search);
       localStorage.setItem('pageSave', page.toString());
       localStorage.setItem('pagesSave', pages.toString());
