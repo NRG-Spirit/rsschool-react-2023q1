@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './SearchBar.css';
 
 interface IProps {
-  handleSearch: (search: string) => Promise<void>;
+  handleSearch: (search: string) => void;
   handlePage: (page: number) => void;
 }
 
@@ -21,8 +21,8 @@ export default function SearchBar(props: IProps) {
   }
   function startSearch(e: React.KeyboardEvent) {
     if (e.key === 'Enter') {
-      props.handlePage(1);
       props.handleSearch(value);
+      props.handlePage(1);
     }
   }
   return (

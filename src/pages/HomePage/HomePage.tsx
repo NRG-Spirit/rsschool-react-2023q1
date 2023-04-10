@@ -33,7 +33,6 @@ export default function HomePage() {
   async function handleSearchBooks(search: string) {
     try {
       setIsLoading(true);
-      setSearch(search);
       const response = await searchBooks(search, 14, page);
       if (response.items) setFoundenBooks(response.items);
       setPages(response.totalItems / 14);
@@ -52,6 +51,10 @@ export default function HomePage() {
     handleSearchBooks(search);
   }
 
+  function handleSearch(value: string) {
+    setSearch(value);
+  }
+
   function handleModal(id: string): void {
     setIsModal(id);
   }
@@ -61,7 +64,7 @@ export default function HomePage() {
       {isModal && <div className="home-page__modal_background"></div>}
       <Header title={'Home'} />
       <div className="home-page_main">
-        <SearchBar handleSearch={handleSearchBooks} handlePage={handlePage} />
+        <SearchBar handleSearch={handleSearch} handlePage={handlePage} />
         {isLoading ? (
           <Loader />
         ) : (
