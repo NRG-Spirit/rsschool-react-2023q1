@@ -8,7 +8,7 @@ import { IBook } from '../../interfaces';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
-import { useGetAllBooksQuery } from '../../redux/booksApi';
+import { useSearchBooksQuery } from '../../redux/booksApi';
 
 export default function HomePage() {
   const [foundedBooks, setFoundenBooks] = useState<IBook[]>([]);
@@ -17,7 +17,7 @@ export default function HomePage() {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [search, setSearch] = useState('');
-  const { data } = useGetAllBooksQuery('spirit');
+  const { data } = useSearchBooksQuery('spirit');
 
   useEffect(() => {
     if (localStorage.getItem('search')) {

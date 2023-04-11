@@ -8,7 +8,7 @@ export const booksApi = createApi({
   reducerPath: 'booksApi',
   baseQuery: fetchBaseQuery({ baseUrl: $host }),
   endpoints: (build) => ({
-    getAllBooks: build.query<IBooksResponse, string>({
+    searchBooks: build.query<IBooksResponse, string>({
       query: (search: string) => ({
         url: '',
         params: {
@@ -20,4 +20,4 @@ export const booksApi = createApi({
   }),
 });
 
-export const { useGetAllBooksQuery } = booksApi;
+export const { useSearchBooksQuery } = booksApi;
