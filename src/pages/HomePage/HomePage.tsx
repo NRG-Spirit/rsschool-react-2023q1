@@ -7,12 +7,15 @@ import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
 import { useSearchBooksQuery } from '../../redux/booksApi';
+import { setSearchState, setPageState } from '../../redux/searchReducer';
+import { useAppDispatch, useAppSelector } from '../../hooks/Reduxhooks';
 
 export default function HomePage() {
+  const dispatch = useAppDispatch();
   const [isModal, setIsModal] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(useAppSelector((state) => state.search.page) || 1);
   const [pages, setPages] = useState(0);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(useAppSelector((state) => state.search.search) || '');
   const { data, isLoading } = useSearchBooksQuery(search, {
     skip: search.length < 1,
   });
@@ -23,10 +26,12 @@ export default function HomePage() {
 
   function handlePage(page: number) {
     setPage(page);
+    dispatch(setPageState(page));
   }
 
   function handleSearch(value: string) {
     setSearch(value);
+    dispatch(setSearchState(value));
   }
 
   function handleModal(id: string): void {

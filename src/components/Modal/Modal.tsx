@@ -9,16 +9,16 @@ interface IProps {
 }
 
 export default function Modal(props: IProps) {
-  const { data: book, isLoading } = useSearchBookQuery(props.id);
+  const { data, isLoading } = useSearchBookQuery(props.id);
 
   const imgLink =
-    book?.volumeInfo?.imageLinks?.large ||
-    book?.volumeInfo?.imageLinks?.medium ||
-    book?.volumeInfo?.imageLinks?.thumbnail ||
+    data?.volumeInfo?.imageLinks?.large ||
+    data?.volumeInfo?.imageLinks?.medium ||
+    data?.volumeInfo?.imageLinks?.thumbnail ||
     './img/cover.png';
-  const author = book?.volumeInfo?.authors?.[0] || '';
-  const price = book?.saleinfo?.listPrice?.amount
-    ? `${book?.saleinfo?.listPrice?.amount}${book?.saleinfo?.listPrice?.currencyCode}`
+  const author = data?.volumeInfo?.authors?.[0] || '';
+  const price = data?.saleinfo?.listPrice?.amount
+    ? `${data?.saleinfo?.listPrice?.amount}${data?.saleinfo?.listPrice?.currencyCode}`
     : 'unavailible';
 
   function handleModal() {
@@ -36,18 +36,18 @@ export default function Modal(props: IProps) {
           </div>
           <div className="modal__info">
             <div className="modal__title">
-              <h2>{book?.volumeInfo.title}</h2>
+              <h2>{data?.volumeInfo.title}</h2>
             </div>
             <div className="modal__author">
               <h3>{author}</h3>
             </div>
-            <div className="modal__publisher">Publisher: {book?.volumeInfo.publisher}</div>
+            <div className="modal__publisher">Publisher: {data?.volumeInfo.publisher}</div>
             <div className="modal__published_date">
-              Published date: {book?.volumeInfo.publishedDate}
+              Published date: {data?.volumeInfo.publishedDate}
             </div>
-            <div className="modal__description">Description: {book?.volumeInfo.description}</div>
-            <div className="modal__pages">Pages: {book?.volumeInfo.pageCount}</div>
-            <div className="modal__rating">Rating: {book?.volumeInfo.averageRating}</div>
+            <div className="modal__description">Description: {data?.volumeInfo.description}</div>
+            <div className="modal__pages">Pages: {data?.volumeInfo.pageCount}</div>
+            <div className="modal__rating">Rating: {data?.volumeInfo.averageRating}</div>
             <div className="modal__price">Price: {price}</div>
             <div className="modal__close" onClick={handleModal}></div>
           </div>
