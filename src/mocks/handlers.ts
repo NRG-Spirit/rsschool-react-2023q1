@@ -1,7 +1,6 @@
 import { rest } from 'msw';
 
 const $host: string | undefined = import.meta.env.VITE_API_URL;
-const $key: string | undefined = import.meta.env.VITE_API_KEY;
 
 export const handlers = [
   rest.get(`${$host}/12345`, (req, res, ctx) => {

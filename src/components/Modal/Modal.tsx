@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
 import './Modal.css';
-import { IBook } from '../../interfaces';
-import { getBook } from '../../http/api';
 import Loader from '../../components/Loader/Loader';
+import { useSearchBookQuery } from '../../redux/booksApi';
+import React from 'react';
 
 interface IProps {
-  id: string | undefined;
+  id: string;
   handleModal: (id: string) => void;
 }
 
 export default function Modal(props: IProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [book, setBook] = useState<IBook>();
+  const { data: book, isLoading } = useSearchBookQuery(props.id);
+
   const imgLink =
     book?.volumeInfo?.imageLinks?.large ||
     book?.volumeInfo?.imageLinks?.medium ||
@@ -21,23 +20,6 @@ export default function Modal(props: IProps) {
   const price = book?.saleinfo?.listPrice?.amount
     ? `${book?.saleinfo?.listPrice?.amount}${book?.saleinfo?.listPrice?.currencyCode}`
     : 'unavailible';
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (props.id) {
-        setIsLoading(true);
-        const response = await getBook(props.id);
-        setBook(response);
-        setIsLoading(false);
-      }
-    };
-    try {
-      fetchData();
-    } catch (e) {
-      if (e instanceof Error) alert(e.message);
-      setIsLoading(false);
-    }
-  }, [props.id]);
 
   function handleModal() {
     props.handleModal('');

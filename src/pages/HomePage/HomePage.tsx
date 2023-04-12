@@ -3,59 +3,23 @@ import Header from '../../components/Header/Header';
 import './HomePage.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CardsList from '../../components/CardsList/CardsList';
-import { searchBooks } from '../../http/api';
-import { IBook } from '../../interfaces';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal/Modal';
 import Pagination from '../../components/Pagination/Pagination';
 import { useSearchBooksQuery } from '../../redux/booksApi';
 
 export default function HomePage() {
-  const [foundedBooks, setFoundenBooks] = useState<IBook[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [isModal, setIsModal] = useState('');
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [search, setSearch] = useState('');
-  const { data } = useSearchBooksQuery('spirit');
+  const { data, isLoading } = useSearchBooksQuery(search, {
+    skip: search.length < 1,
+  });
 
   useEffect(() => {
-    if (localStorage.getItem('search')) {
-      const searchSave = localStorage.getItem('search') || 'q';
-      setSearch(searchSave);
-      const pageSave = Number(localStorage.getItem('pageSave')) || 1;
-      setPage(pageSave);
-      const pagesSave = Number(localStorage.getItem('pagesSave')) || 0;
-      setPages(pagesSave);
-      handleSearchBooks();
-    }
-  }, []);
-
-  async function handleSearchBooks() {
-    try {
-      if (search) {
-        setIsLoading(true);
-        const response = await searchBooks(search, 14, page);
-        if (response.items) setFoundenBooks(response.items);
-        setPages(response.totalItems / 14);
-        localStorage.setItem('search', search);
-        localStorage.setItem('pageSave', page.toString());
-        localStorage.setItem('pagesSave', pages.toString());
-        setIsLoading(false);
-      } else {
-        setFoundenBooks([]);
-        setPage(1);
-        setPages(0);
-      }
-    } catch (e) {
-      if (e instanceof Error) alert(e.message);
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    handleSearchBooks();
-  }, [page, search]);
+    if (data?.totalItems) setPages(data.totalItems / 14);
+  }, [data]);
 
   function handlePage(page: number) {
     setPage(page);
@@ -63,7 +27,6 @@ export default function HomePage() {
 
   function handleSearch(value: string) {
     setSearch(value);
-    handlePage(1);
   }
 
   function handleModal(id: string): void {
@@ -87,7 +50,7 @@ export default function HomePage() {
           <Loader />
         ) : (
           <>
-            <CardsList cards={foundedBooks} handleModal={handleModal} />
+            {data?.items && <CardsList cards={data.items} handleModal={handleModal} />}
             <Pagination handlePage={handlePage} page={page} pages={pages} />
           </>
         )}
