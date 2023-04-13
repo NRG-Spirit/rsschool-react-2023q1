@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
+import { setSearchState } from '../../redux/searchReducer';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 
-interface IProps {
-  handleSearch: (search: string) => void;
-  defaultValue: string;
-}
-
-export default function SearchBar(props: IProps) {
-  const [value, setValue] = useState('');
+export default function SearchBar() {
+  const dispatch = useAppDispatch();
+  const [value, setValue] = useState(useAppSelector((state) => state.search.search) || '');
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
   }
   function startSearch(e: React.KeyboardEvent) {
     if (e.key === 'Enter') {
-      props.handleSearch(value);
+      dispatch(setSearchState(value));
     }
   }
   return (
@@ -25,7 +23,7 @@ export default function SearchBar(props: IProps) {
         name="searchBar"
         onChange={handleChange}
         onKeyUp={startSearch}
-        defaultValue={props.defaultValue}
+        defaultValue={value}
       />
     </div>
   );

@@ -1,27 +1,30 @@
-import React from 'react';
 import './Pagination.css';
+import { setPageState } from '../../redux/searchReducer';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
+import React from 'react';
 
 interface IProps {
-  page: number;
   pages: number;
-  handlePage: (page: number) => void;
 }
 
 export default function Pagination(props: IProps) {
+  const dispatch = useAppDispatch();
+  const page = useAppSelector((state) => state.search.page) || 1;
+
   function handlePage(page: number) {
-    props.handlePage(page);
+    dispatch(setPageState(page));
   }
 
   return (
     <div className="pagination">
-      {props.page > 1 && (
-        <div className="pagination__prew" onClick={() => handlePage(props.page - 1)}>
+      {page > 1 && (
+        <div className="pagination__prew" onClick={() => handlePage(page - 1)}>
           previous page
         </div>
       )}
-      {(props.page > 1 || props.pages > props.page) && <div>{props.page}</div>}
-      {props.pages > props.page && (
-        <div className="pagination__next" onClick={() => handlePage(props.page + 1)}>
+      {(page > 1 || props.pages > page) && <div>{page}</div>}
+      {props.pages > page && (
+        <div className="pagination__next" onClick={() => handlePage(page + 1)}>
           next page
         </div>
       )}

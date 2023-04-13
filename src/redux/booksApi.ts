@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IBooksResponse, IBook } from '../interfaces';
 
+interface IParams {
+  search: string;
+  page: number;
+  limit?: number;
+}
+
 const $host: string | undefined = import.meta.env.VITE_API_URL;
 const $key: string | undefined = import.meta.env.VITE_API_KEY;
 
@@ -8,14 +14,14 @@ export const booksApi = createApi({
   reducerPath: 'booksApi',
   baseQuery: fetchBaseQuery({ baseUrl: $host }),
   endpoints: (build) => ({
-    searchBooks: build.query<IBooksResponse, string>({
-      query: (search: string, page = 1, limit = 14) => ({
+    searchBooks: build.query<IBooksResponse, IParams>({
+      query: (args: IParams) => ({
         url: '',
         params: {
-          q: search,
+          q: args.search,
           key: $key,
-          maxResults: limit,
-          startIndex: page,
+          maxResults: args.limit || 14,
+          startIndex: args.page * 14,
         },
       }),
     }),
