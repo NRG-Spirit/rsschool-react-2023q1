@@ -4,14 +4,14 @@ import { IBook } from '../../interfaces';
 import Card from '../../components/Card/Card';
 
 interface IProps {
-  cards: IBook[];
-  handleModal: (id: string) => void;
+  books: IBook[];
+  handleModal: ((id: string) => void) | null;
 }
 
 export default function CardsList(props: IProps) {
   return (
     <div className="cardsList">
-      {props.cards.map((el, idx) => {
+      {props.books.map((el, idx) => {
         return <Card key={idx} card={el} handleModal={props.handleModal} />;
       })}
     </div>

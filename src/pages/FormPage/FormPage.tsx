@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import './FormPage.css';
 import CardsList from '../../components/CardsList/CardsList';
 import Form from '../../components/Form/Form';
-import { ICard } from '../../interfaces';
+import { useAppSelector } from '../../hooks/reduxHooks';
+import React from 'react';
 
 export default function FormPage() {
-  const [activeCards, setActiveCard] = useState<ICard[]>([]);
+  const books = useAppSelector((state) => state.form);
 
-  function addCard(card: ICard) {
-    let newActiveCards = activeCards || [];
-    newActiveCards = newActiveCards.concat(card);
-    setActiveCard(newActiveCards);
-  }
   return (
     <div className="form-page">
       <Header title={'Form'} />
-      <Form addCard={addCard} id={activeCards.length + 1} />
-      <CardsList cards={activeCards} />
+      <Form id={books.length + 1} />
+      <CardsList books={books} handleModal={null} />
     </div>
   );
 }

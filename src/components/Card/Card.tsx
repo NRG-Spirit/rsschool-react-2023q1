@@ -4,7 +4,7 @@ import { IBook } from '../../interfaces';
 
 interface IProps {
   card: IBook;
-  handleModal: (is: string) => void;
+  handleModal: ((is: string) => void) | null;
 }
 
 export default function Card(props: IProps) {
@@ -12,7 +12,7 @@ export default function Card(props: IProps) {
   const author = props.card.volumeInfo?.authors?.[0] || '';
 
   function handleModal() {
-    props.handleModal(props.card.id);
+    if (props.handleModal) props.handleModal(props.card.id);
   }
   return (
     <div className="card" onClick={handleModal}>

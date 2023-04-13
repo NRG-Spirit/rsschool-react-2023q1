@@ -3,13 +3,17 @@ import { describe, expect, it } from 'vitest';
 import React from 'react';
 import App from './App';
 import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 describe('App', () => {
   it('Render App', () => {
     render(
-      <Router>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {
@@ -20,9 +24,11 @@ describe('App', () => {
   it('Landing to about us route', () => {
     const route = '/about';
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={[route]}>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {
@@ -33,9 +39,11 @@ describe('App', () => {
   it('Landing to 404', () => {
     const badRoute = '/some/bad/route';
     render(
-      <MemoryRouter initialEntries={[badRoute]}>
-        <App />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={[badRoute]}>
+          <App />
+        </MemoryRouter>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {

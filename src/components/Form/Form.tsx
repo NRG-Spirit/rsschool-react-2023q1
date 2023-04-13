@@ -9,13 +9,15 @@ import FileInput from './Inputs/FileInput';
 import DateInput from './Inputs/DateInput';
 import CheckboxInput from './Inputs/CheckboxInput';
 import React from 'react';
+import { addBookState } from '../../redux/formReducer';
+import { useAppDispatch } from '../../hooks/reduxHooks';
 
 interface IProps {
-  addCard: (card: IBook) => void;
   id: number;
 }
 
 export default function Form(props: IProps) {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -41,7 +43,7 @@ export default function Form(props: IProps) {
       },
       kind: data.kind || '',
     };
-    props.addCard(card);
+    dispatch(addBookState(card));
     alert('Cards added');
     reset();
   };

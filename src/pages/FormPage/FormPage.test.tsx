@@ -4,13 +4,17 @@ import React from 'react';
 import FormPage from './FormPage';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Form from '../../components/Form/Form';
+import { store } from '../../redux/store';
+import { Provider } from 'react-redux';
 
 describe('FormPage', () => {
   it('Render header', () => {
     render(
-      <Router>
-        <FormPage />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <FormPage />
+        </Router>
+      </Provider>
     );
     expect(
       screen.getByRole('heading', {
@@ -24,7 +28,11 @@ describe('FormPage', () => {
     ).toBeInTheDocument();
   });
   it('Render form', () => {
-    render(<Form id={41} addCard={(e) => e} />);
+    render(
+      <Provider store={store}>
+        <Form id={41} />
+      </Provider>
+    );
     expect(screen.getByTestId('form-date')).toBeInTheDocument();
     expect(screen.getByTestId('form-number')).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'EN' })).toBeInTheDocument;

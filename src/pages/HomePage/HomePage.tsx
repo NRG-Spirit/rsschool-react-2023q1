@@ -46,7 +46,7 @@ export default function HomePage() {
           <Loader />
         ) : (
           <>
-            {data?.items && <CardsList cards={data.items} handleModal={handleModal} />}
+            {data?.items && <CardsList books={data.items} handleModal={handleModal} />}
             <Pagination pages={pages} />
           </>
         )}
