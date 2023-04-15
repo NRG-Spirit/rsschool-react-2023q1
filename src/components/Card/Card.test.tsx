@@ -4,29 +4,32 @@ import React from 'react';
 import Card from './Card';
 import { IBook } from '../../interfaces';
 
-describe('Card', () => {
-  it('Render card', () => {
-    const testData: IBook = {
-      id: 'Test ID',
-      volumeInfo: {
-        imageLinks: {
-          thumbnail: '',
-          smallThumbnail: '',
-        },
-        authors: ['Test Author'],
-        title: 'Test title',
-        pageCount: 100,
-        publishedDate: '09.09.1999',
+describe('Render card', () => {
+  const testData: IBook = {
+    id: 'Test ID',
+    volumeInfo: {
+      imageLinks: {
+        thumbnail: '',
+        smallThumbnail: '',
       },
-    };
+      authors: ['Test Author'],
+      title: 'Test title',
+      pageCount: 100,
+      publishedDate: '09.09.1999',
+    },
+  };
+  it('Should render title', () => {
     render(<Card card={testData} handleModal={() => {}} />);
     expect(
       screen.getByRole('heading', {
         level: 4,
       })
     ).toHaveTextContent(testData.volumeInfo.title);
+  });
+  it('Should render image', () => {
+    render(<Card card={testData} handleModal={() => {}} />);
     expect(
-      screen.getAllByRole('img', {
+      screen.getByRole('img', {
         name: 'cover',
       })
     ).toBeInTheDocument;
