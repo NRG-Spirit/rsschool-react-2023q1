@@ -20,7 +20,7 @@
 .footer__rs-link {
   width: 120px;
   height: 50px;
-  background-image: url('./public/img/rss-logo.svg');
+  background-image: url('./img/rss-logo.svg');
   background-repeat: no-repeat;
 }
 

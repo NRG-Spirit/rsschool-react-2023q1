@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IBooksResponse, IBook } from '../interfaces';
+import fetch from 'isomorphic-fetch';
 
 interface IParams {
   search: string;
@@ -12,7 +13,7 @@ const $key: string | undefined = import.meta.env.VITE_API_KEY;
 
 export const booksApi = createApi({
   reducerPath: 'booksApi',
-  baseQuery: fetchBaseQuery({ baseUrl: $host }),
+  baseQuery: fetchBaseQuery({ baseUrl: $host, fetchFn: fetch }),
   endpoints: (build) => ({
     searchBooks: build.query<IBooksResponse, IParams>({
       query: (args: IParams) => ({
