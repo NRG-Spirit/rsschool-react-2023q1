@@ -14,19 +14,27 @@ async function createServer() {
   });
   app.use(vite.middlewares);
 
-  app.use('*', async (req, res) => {
+  app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
       let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
       template = await vite.transformIndexHtml(url, template);
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
-      const appHtml = await render(url);
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml);
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+      const html = template.split(`<!--ssr-outlet-->`);
+      const { pipe } = await render(url, {
+        onShellReady() {
+          res.write(html[0]);
+          pipe(res);
+        },
+        onAllReady() {
+          res.write(html[0] + html[1]);
+          res.end();
+        },
+      });
     } catch (e) {
-      vite.ssrFixStacktrace(e);
-      next(e);
+      vite.ssrFixStacktrace(e as Error);
+      next(e as Error);
     }
   });
 
